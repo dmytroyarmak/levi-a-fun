@@ -7697,3 +7697,9 @@ a.button {
   .login-form .login-button {
     display: block;
     width: 100%; }
+
+.page-background {
+  background: url('../img/page-bg.png');
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: bottom; }

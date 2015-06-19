@@ -53,3 +53,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   }
 }
 
+.page-background {
+  background: url('../img/page-bg.png');
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: bottom;
+}
