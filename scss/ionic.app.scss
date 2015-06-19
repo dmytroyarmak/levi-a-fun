@@ -21,3 +21,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.tabs-striped.tabs-color-dark .tab-item.tab-item-active,
+.tabs-striped.tabs-color-dark .tab-item.active,
+.tabs-striped.tabs-color-dark .tab-item.activated {
+  border: 0 solid $assertive;
+}
