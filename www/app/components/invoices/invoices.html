@@ -1,25 +1,38 @@
 <ion-view view-title="Invoices">
-  <ion-content class="padding">
-    <div class="row">
+  <ion-content class="padding page-background">
+    <div class="row" ng-show="!invoices.invoice" class="ng-hide">
       <div class="col">
-
-        <button class="button button-block button-positive" ng-click="invoices.lookUpMT()" >
-          Look-up for MT invoices
-        </button> 
-
-        <button class="button button-block button-positive" ng-click="invoices.shareMessage()" >
-          share message
+        <button class="button button-block button-positive no-margin" ng-click="invoices.emulateInvoice()" >
+          Look-up for invoices
         </button>
+      </div>
+    </div>
 
-      </div>
-    </div>
-    <div>
-    </div>
-    <div class="row">
-      <h4>Pay with account:</h4>
-      <div class="col">
-        sdfsdfsdfds
-      </div>
-    </div>
+    <ion-list ng-show="invoices.invoice" class="ng-hide">
+      <ion-item class="item-divider">Invoice data</ion-item>
+      <ion-item>
+        <h4>IBAN</h4>
+        <p>{{ invoices.invoice.account.iban}}</p>
+      </ion-item>
+      <ion-item>
+        <h4>Country</h4>
+        <p>{{ invoices.invoice.account.country}}</p>
+      </ion-item>
+      <ion-item>
+        <h4>Amount</h4>
+        <p>{{ invoices.invoice.amount}}</p>
+      </ion-item>
+
+      <ion-item class="item-divider">Account to pay from</ion-item>
+
+      <ion-item ng-click="invoices.goToPayFromAccount(account)" ng-repeat="account in invoices.accountsList" class="item-icon-right">
+        <i class="icon ion-ios-arrow-right"></i>
+        <span class="item-note">{{ account.amount | currency}}</span>
+        <h3>{{ account.name }}</h3>
+        <p>IBAN: <small>{{ account.iban }}</small></p>
+      </ion-item>
+
+    </ion-list>
+
   </ion-content>
 </ion-view>
