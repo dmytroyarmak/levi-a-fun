@@ -2,7 +2,9 @@
   'use strict';
 
   angular
-    .module('levi-a-fun.components.login', [])
+    .module('levi-a-fun.components.login', [
+      'levi-a-fun.services.session'
+    ])
     .config(loginConfig)
     .controller('LoginCtrl', LoginCtrl);
 
@@ -15,12 +17,16 @@
     });
   }
 
-  LoginCtrl.$inject = ['$state'];
-  function LoginCtrl ($state) {
+  LoginCtrl.$inject = ['$state', 'session'];
+  function LoginCtrl ($state, session) {
     this.$state = $state;
+    this.session = session;
+    this.pin = '';
   }
 
   LoginCtrl.prototype.onLoginFormSubmit = function() {
-    this.$state.go('tabs.accounts');
+    this.session.login(this.pin).then(function() {
+      this.$state.go('tabs.accounts');
+    }.bind(this));
   };
 }());

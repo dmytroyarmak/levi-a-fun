@@ -16,12 +16,8 @@
     };
 
     function login(pin){
-      var deferred = $q.defer();
-
       userPin = pin;
-      deferred.resolve(pin);
-
-      return deferred.promise;
+      return $q.when(userPin);
     }
 
     function getUserPin(){
