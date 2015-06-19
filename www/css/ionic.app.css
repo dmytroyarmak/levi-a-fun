@@ -7681,7 +7681,7 @@ a.button {
 .login-background {
   background: url('../img/login-bg.jpg');
   background-size: cover;
-  background-position-y: center; }
+  background-position-y: top; }
 
 .login-form {
   display: block;
@@ -7699,10 +7699,10 @@ a.button {
     width: 100%; }
 
 .page-background {
-  background: url('../img/page-bg.png');
+  background: url('../img/page-bg.jpg');
   background-size: cover;
   background-position-x: center;
-  background-position-y: bottom; }
+  background-position-y: top; }
 
 .item-stacked-label {
   background-color: #fff; }

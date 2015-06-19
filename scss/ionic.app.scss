@@ -30,7 +30,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .login-background {
   background: url('../img/login-bg.jpg');
   background-size: cover;
-  background-position-y: center;
+  background-position-y: top;
 }
 
 .login-form {
@@ -54,10 +54,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 .page-background {
-  background: url('../img/page-bg.png');
+  background: url('../img/page-bg.jpg');
   background-size: cover;
   background-position-x: center;
-  background-position-y: bottom;
+  background-position-y: top;
 }
 
 .item-stacked-label {
