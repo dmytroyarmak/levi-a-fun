@@ -1,0 +1,27 @@
+<ion-view view-title="Account details">
+  <ion-content class="padding">
+    <div class="row">
+      <div class="col">
+        <h3>Account Name:</h3>
+        fghfghfg
+        <h3>Account Number:</h3>
+        fghfghfg
+        <h3>Amount:</h3>
+        100500
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Amount:</span>
+            <input type="text" placeholder="0.00" ng-model="account.transferAmount">
+          </label>
+          <button class="button button-block button-positive" ng-click="account.createInvoice()" >
+            Create invoice
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
