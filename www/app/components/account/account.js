@@ -13,18 +13,29 @@
       views: {
         'accounts-tab' : {
           templateUrl: 'app/components/account/account.html',
-          controller: 'AccountCtrl as account'
+          controller: 'AccountCtrl as account',
+          resolve: {
+            accountDetails: function($q, $stateParams, session, accounts) {
+              if (session.isLoggedIn()) {
+                return accounts.getUserAccount($stateParams.id);
+              } else {
+                return $q.reject('Not authrorized');
+              }
+            }
+          }
         }
       }
     });
   }
 
-  AccountCtrl.$inject = [];
-  function AccountCtrl () {
+  AccountCtrl.$inject = ['accountDetails'];
+  function AccountCtrl (accountDetails) {
     var vm = this;
 
+    vm.accountDetails = accountDetails;
+
     vm.createInvoice = function(){
-      console.log('aaaa');
+      console.log('aaaa', this.transferAmount);
     }
   }
 }());
