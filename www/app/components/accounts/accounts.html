@@ -1,5 +1,12 @@
 <ion-view view-title="Accounts">
   <ion-content class="padding page-background">
-    <pre>{{ accounts.accountsList | json }}</pre>
+    <ion-list>
+      <ion-item ng-click="accounts.goToAccountDetails(account)" ng-repeat="account in accounts.accountsList" class="item-icon-right">
+        <i class="icon ion-ios-arrow-right"></i>
+        <span class="item-note">{{ account.amount | currency}}</span>
+        <h3>{{ account.name }}</h3>
+        <p>IBAN: <small>{{ account.iban }}</small></p>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

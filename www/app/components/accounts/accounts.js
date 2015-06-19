@@ -18,7 +18,7 @@
           templateUrl: 'app/components/accounts/accounts.html',
           controller: 'AccountsCtrl as accounts',
           resolve: {
-            accountsList: function($state, $q, session, accounts) {
+            accountsList: function($q, session, accounts) {
               if (session.isLoggedIn()) {
                 return accounts.getUserAccounts(session.getUserPin());
               } else {
@@ -31,8 +31,13 @@
     });
   }
 
-  AccountsCtrl.$inject = ['accountsList'];
-  function AccountsCtrl (accountsList) {
+  AccountsCtrl.$inject = ['$state', 'accountsList'];
+  function AccountsCtrl ($state, accountsList) {
+    this.$state = $state;
     this.accountsList = accountsList;
   }
+
+  AccountsCtrl.prototype.goToAccountDetails = function(account) {
+    this.$state.go('tabs.account', {id: account.id});
+  };
 }());

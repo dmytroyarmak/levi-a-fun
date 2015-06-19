@@ -1,27 +1,30 @@
 <ion-view view-title="Account details">
-  <ion-content class="padding">
-    <div class="row">
-      <div class="col">
-        <h3>Account Name:</h3>
-        fghfghfg
-        <h3>Account Number:</h3>
-        fghfghfg
-        <h3>Amount:</h3>
-        100500
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="list">
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Amount:</span>
-            <input type="text" placeholder="0.00" ng-model="account.transferAmount">
-          </label>
-          <button class="button button-block button-positive" ng-click="account.createInvoice()" >
-            Create invoice
-          </button>
-        </div>
-      </div>
-    </div>
+  <ion-content class="padding page-background">
+    <ion-list>
+      <ion-item class="item-divider">Account details</ion-item>
+      <ion-item>
+        <h4>Name</h4>
+        <p>{{ account.accountDetails.name}}</p>
+      </ion-item>
+      <ion-item>
+        <h4>IBAN</h4>
+        <p>{{ account.accountDetails.iban}}</p>
+      </ion-item>
+      <ion-item>
+        <h4>Amount</h4>
+        <p>{{ account.accountDetails.amount}}</p>
+      </ion-item>
+
+      <ion-item class="item-divider">Create invoice</ion-item>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Transfer amount</span>
+        <input type="number" placeholder="0.00" step="0.01" ng-model="account.transferAmount">
+      </label>
+      <ion-item>
+        <button class="button button-block button-balanced no-margin" ng-click="account.createInvoice()" >
+          Create invoice
+        </button>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

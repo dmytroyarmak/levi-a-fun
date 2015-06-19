@@ -8,7 +8,6 @@
       'levi-a-fun.components.tabs',
       'levi-a-fun.components.accounts',
       'levi-a-fun.components.account',
-      'levi-a-fun.components.about',
       'levi-a-fun.components.invoices'
     ])
     .constant('BACKEND_ADDRESS', 'http://qless.coffee:3000')

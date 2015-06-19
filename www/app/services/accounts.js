@@ -10,11 +10,24 @@
     var userPin = null;
 
     return {
-      getUserAccounts : getUserAccounts
+      getUserAccounts : getUserAccounts,
+      getUserAccount: getUserAccount
     };
 
     function getUserAccounts(pin){
-      return $http.get(BACKEND_ADDRESS + '/api/user/' + pin + '/accounts');
+      return $http
+        .get(BACKEND_ADDRESS + '/api/user/' + pin + '/accounts')
+        .then(getDataFromResponce);
+    }
+
+    function getUserAccount(accountId) {
+      return $http
+        .get(BACKEND_ADDRESS + '/api/accounts/' + accountId)
+        .then(getDataFromResponce);
+    }
+
+    function getDataFromResponce(resp) {
+      return resp.data;
     }
   }
 }());

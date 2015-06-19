@@ -7703,3 +7703,9 @@ a.button {
   background-size: cover;
   background-position-x: center;
   background-position-y: bottom; }
+
+.item-stacked-label {
+  background-color: #fff; }
+
+.no-margin {
+  margin: 0 !important; }
