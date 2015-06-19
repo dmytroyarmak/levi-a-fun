@@ -14,7 +14,13 @@
     };
 
     function getUserAccounts(pin){
-      return $http.get(BACKEND_ADDRESS + '/api/user/' + pin + '/accounts');
+      return $http
+        .get(BACKEND_ADDRESS + '/api/user/' + pin + '/accounts')
+        .then(getDataFromResponce);
+    }
+
+    function getDataFromResponce(resp) {
+      return resp.data;
     }
   }
 }());
