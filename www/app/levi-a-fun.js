@@ -8,7 +8,8 @@
       'levi-a-fun.components.tabs',
       'levi-a-fun.components.accounts',
       'levi-a-fun.components.account',
-      'levi-a-fun.components.invoices'
+      'levi-a-fun.components.invoices',
+      'levi-a-fun.components.payment'
     ])
     .constant('BACKEND_ADDRESS', 'http://qless.coffee:3000')
     .config(leviAFunConfig)

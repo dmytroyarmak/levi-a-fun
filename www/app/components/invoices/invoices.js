@@ -2,7 +2,11 @@
   'use strict';
 
   angular
-    .module('levi-a-fun.components.invoices', [])
+    .module('levi-a-fun.components.invoices', [
+      'levi-a-fun.services.session',
+      'levi-a-fun.services.accounts',
+      'levi-a-fun.services.payment'
+    ])
     .config(invoicesConfig)
     .controller('InvoicesCtrl', InvoicesCtrl);
 
@@ -13,21 +17,55 @@
       views: {
         'invoices-tab': {
           templateUrl: 'app/components/invoices/invoices.html',
-          controller: 'InvoicesCtrl as invoices'
+          controller: 'InvoicesCtrl as invoices',
+          resolve: {
+            accountsList: function($q, session, accounts) {
+              if (session.isLoggedIn()) {
+                return accounts.getUserAccounts(session.getUserPin());
+              } else {
+                return $q.reject('Not authrorized');
+              }
+            }
+          }
         }
       }
     });
   }
 
-  InvoicesCtrl.$inject = [];
-  function InvoicesCtrl () {
+  InvoicesCtrl.$inject = ['$state', 'accountsList', 'payment'];
+  function InvoicesCtrl ($state, accountsList, payment) {
     var vm = this;
-    vm.invoiceData = {};
-    vm.accounts = [];
-
+    vm.$state = $state;
+    // variables models
+    vm.invoice = null;
+    vm.accountsList = accountsList;
+    // action handlers
+    vm.emulateInvoice = emulateInvoice;
     vm.lookUpMT = lookUpMT;
-
     vm.shareMessage = shareMessage;
+    vm.goToPayFromAccount = goToPayFromAccount;
+
+    ////
+
+    function goToPayFromAccount(account) {
+      payment.formPayment(account, vm.invoice.account, vm.invoice.amount)
+      .then(function(){
+        vm.$state.go('tabs.payment');
+      });
+    }   
+
+    function emulateInvoice(){
+      vm.invoice = {
+        account : {
+          "id": "5583d161bab8647e0a3ea0a2",
+          "name": "Nikki",
+          "iban": "5583D1610D0B0B7317CA6B11",
+          "country": "NL",
+          "amount": 1072.49
+        },
+        amount : 199
+      }
+    }
 
     function shareMessage(){
       if(window.nfc || (window.cordova && window.cordova.nfc)) {
