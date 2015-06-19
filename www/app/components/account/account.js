@@ -28,14 +28,50 @@
     });
   }
 
-  AccountCtrl.$inject = ['accountDetails'];
-  function AccountCtrl (accountDetails) {
+  AccountCtrl.$inject = ['$ionicLoading', '$scope', 'accountDetails'];
+  function AccountCtrl ($ionicLoading, $scope, accountDetails) {
     var vm = this;
 
     vm.accountDetails = accountDetails;
+    vm.createInvoice = createInvoice;
+    vm.cancelInvoice = cancelInvoice;
 
-    vm.createInvoice = function(){
-      console.log('aaaa', this.transferAmount);
+    function createInvoice(){
+      if(window.nfc || (window.cordova && window.cordova.nfc)) {
+        $ionicLoading.show({
+          template: '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner>' +
+            '<p>Tap another device to transfer...</p>' +
+            '<button class="button button-outline button-light" ng-click="account.cancelInvoice()">Cancel</button>',
+          scope: $scope
+        });
+
+        nfc.share(
+          _generateInvoiceNdefMessage(),
+          function onShareSuccess() {
+            $ionicLoading.hide();
+          },
+          function onShareError(error) {
+            console.error("Error adding NDEF listener " + JSON.stringify(error));
+          }
+        );
+      } else {
+        console.log('no nfc bro :(');
+      }
+    }
+
+    function cancelInvoice() {
+      $ionicLoading.hide();
+    };
+
+    function _generateInvoiceNdefMessage (argument) {
+      var invoiceData = JSON.stringify({
+        account: vm.accountDetails,
+        amount: vm.transferAmount
+      });
+
+      return [
+          ndef.textRecord(invoiceData)
+      ];
     }
   }
 }());
