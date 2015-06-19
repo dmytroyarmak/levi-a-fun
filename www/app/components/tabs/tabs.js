@@ -9,8 +9,8 @@
   function tabsConfig ($stateProvider) {
     $stateProvider.state('tabs', {
       abstract: true,
-      url: '/tab',
-      templateUrl: 'app/components/login/login.html'
+      url: '/tabs',
+      templateUrl: 'app/components/tabs/tabs.html'
     });
   }
 }());

@@ -9,10 +9,13 @@
   aboutConfig.$inject = ['$stateProvider'];
   function aboutConfig ($stateProvider) {
     $stateProvider.state('tabs.about', {
-      url: '/tabs/about',
-      templateUrl: 'app/components/about/about.html',
-      controller: 'AboutCtrl',
-      controllerAs: 'about'
+      url: '/about',
+      views: {
+        'about-tab': {
+          templateUrl: 'app/components/about/about.html',
+          controller: 'AboutCtrl as about'
+        }
+      }
     });
   }
 
