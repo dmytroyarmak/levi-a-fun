@@ -12,6 +12,7 @@
     return {
       login : login,
       getUserPin : getUserPin,
+      isLoggedIn: isLoggedIn,
       logOut : logOut
     };
 
@@ -22,6 +23,10 @@
 
     function getUserPin(){
       return userPin;
+    }
+
+    function isLoggedIn() {
+      return !!userPin;
     }
 
     function logOut(){

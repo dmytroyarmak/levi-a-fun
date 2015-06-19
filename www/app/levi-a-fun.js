@@ -18,8 +18,8 @@
     $urlRouterProvider.otherwise('/login');
   }
 
-  leviAFunRun.$inject = ['$ionicPlatform'];
-  function leviAFunRun ($ionicPlatform) {
+  leviAFunRun.$inject = ['$ionicPlatform', '$rootScope', '$state'];
+  function leviAFunRun ($ionicPlatform, $rootScope, $state) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -30,6 +30,10 @@
         // org.apache.cordova.statusbar required
         StatusBar.styleLightContent();
       }
+    });
+
+    $rootScope.$on('$stateChangeError', function(){
+      $state.go('login');
     });
   }
 }());

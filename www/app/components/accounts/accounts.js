@@ -2,7 +2,10 @@
   'use strict';
 
   angular
-    .module('levi-a-fun.components.accounts', [])
+    .module('levi-a-fun.components.accounts', [
+      'levi-a-fun.services.session',
+      'levi-a-fun.services.accounts',
+    ])
     .config(accountsConfig)
     .controller('AccountsCtrl', AccountsCtrl);
 
@@ -13,13 +16,23 @@
       views: {
         'accounts-tab': {
           templateUrl: 'app/components/accounts/accounts.html',
-          controller: 'AccountsCtrl as accounts'
+          controller: 'AccountsCtrl as accounts',
+          resolve: {
+            accountsList: function($state, $q, session, accounts) {
+              if (session.isLoggedIn()) {
+                return accounts.getUserAccounts(session.getUserPin());
+              } else {
+                return $q.reject('Not authrorized');
+              }
+            }
+          }
         }
       }
     });
   }
 
-  AccountsCtrl.$inject = [];
-  function AccountsCtrl () {
+  AccountsCtrl.$inject = ['accountsList'];
+  function AccountsCtrl (accountsList) {
+    this.accountsList = accountsList;
   }
 }());
