@@ -1,9 +1,8 @@
 <ion-view view-title="Login">
-  <ion-content class="padding">
-    <form name="loginForm" ng-submit="login.onLoginFormSubmit()">
-      <h1>Enter your PIN</h1>
-      <input type="number" size="4" maxlength="4">
-      <button type="submit">Submit</button>
+  <ion-content class="padding login-background">
+    <form name="loginForm" ng-submit="login.onLoginFormSubmit()" class="login-form">
+      <input type="password" class="login-pin-input" placeholder="Enter your PIN">
+      <button type="submit" class="button button-balanced login-button">SUBMIT</button>
     </form>
   </ion-content>
 </ion-view>
