@@ -1,4 +1,5 @@
 {
   "name": "levi-a-fun",
-  "app_id": "43372818"
+  "app_id": "43372818",
+  "gulpStartupTasks": ["sass", "watch"]
 }
