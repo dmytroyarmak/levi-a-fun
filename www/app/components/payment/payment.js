@@ -28,14 +28,23 @@
     });
   }
 
-  PaymentCtrl.$inject = ['$state', 'payment'];
-  function PaymentCtrl ($state, payment) {
+  PaymentCtrl.$inject = ['$state', '$scope', '$ionicLoading', 'payment'];
+  function PaymentCtrl ($state, $scope, $ionicLoading, payment) {
     var vm = this;
     vm.$state = $state;
     vm.paymentData = payment.getPayment();
 
     vm.pay = function(){
+      $ionicLoading.show({
+        template : '<p><i class="icon assertive ion-checkmark"></i></p><p>The payment was successful.</p>' +
+        '<button class="button button-small button-outline button-light" ng-click="payment.done()">OK</button>',
+        scope: $scope
+      });
+    };
+
+    vm.done = function() {
+      $ionicLoading.hide();
       vm.$state.go('tabs.invoices');
-    }
+    };
   }
 }());
