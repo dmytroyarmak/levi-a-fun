@@ -1,7 +1,7 @@
 <ion-view view-title="Payment review">
   <ion-content class="padding page-background">
     <ion-list>
-      <ion-item class="item-divider">AAAAA details</ion-item>
+      <ion-item class="item-divider">Payment details</ion-item>
 
       <ion-item>
         <h4>Transfer type</h4>
@@ -10,12 +10,12 @@
 
       <ion-item>
         <h4>Commission</h4>
-        <p>{{ payment.paymentData.commissionValue}}</p>
+        <p>{{ payment.paymentData.commissionValue | currency }}</p>
       </ion-item>
 
       <ion-item>
-        <h4>To Pay</h4>
-        <p>{{ payment.paymentData.toPay}}</p>
+        <h4>To pay</h4>
+        <p>{{ payment.paymentData.toPay | currency }}</p>
       </ion-item>
 
       <ion-item>
@@ -23,7 +23,7 @@
           Pay
         </button>
       </ion-item>
-      
+
     </ion-list>
   </ion-content>
 </ion-view>

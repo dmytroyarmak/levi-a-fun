@@ -34,9 +34,8 @@
     vm.$state = $state;
     vm.paymentData = payment.getPayment();
 
-    //
     vm.pay = function(){
-      vm.$state.go('tabs.accounts');
+      vm.$state.go('tabs.invoices');
     }
   }
 }());
