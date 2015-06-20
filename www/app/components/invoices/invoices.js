@@ -32,8 +32,8 @@
     });
   }
 
-  InvoicesCtrl.$inject = ['$state', 'accountsList', 'payment'];
-  function InvoicesCtrl ($state, accountsList, payment) {
+  InvoicesCtrl.$inject = ['$scope','$state', 'accountsList', 'payment'];
+  function InvoicesCtrl ($scope, $state, accountsList, payment) {
     var vm = this;
     vm.$state = $state;
     // variables models
@@ -64,7 +64,7 @@
           "amount": 1072.49
         },
         amount : 199
-      }
+      };
     }
 
     function shareMessage(){
@@ -98,7 +98,9 @@
 
               // assuming the first record in the message has 
               // a payload that can be converted to a string.
-              alert(nfc.bytesToString(ndefMessage[0].payload).substring(3));
+              //alert(nfc.bytesToString(ndefMessage[0].payload).substring(3));
+              vm.invoice = JSON.parse(nfc.bytesToString(ndefMessage[0].payload).substring(3));
+              $scope.$apply();
           }, 
           function () { // success callback
               alert("Waiting for NDEF tag");
