@@ -32,8 +32,8 @@
     });
   }
 
-  InvoicesCtrl.$inject = ['$scope','$state', 'accountsList', 'payment'];
-  function InvoicesCtrl ($scope, $state, accountsList, payment) {
+  InvoicesCtrl.$inject = ['$ionicLoading', '$scope','$state', 'accountsList', 'payment'];
+  function InvoicesCtrl ($ionicLoading, $scope, $state, accountsList, payment) {
     var vm = this;
     vm.$state = $state;
     // variables models
@@ -44,6 +44,7 @@
     vm.lookUpMT = lookUpMT;
     vm.shareMessage = shareMessage;
     vm.goToPayFromAccount = goToPayFromAccount;
+    vm.cancelLookup = cancelLookup;
 
     ////
 
@@ -87,14 +88,27 @@
       }
     }
 
+    function cancelLookup() {
+      $ionicLoading.hide();
+    }
+
     function lookUpMT(){
       // Read NDEF formatted NFC Tags
       if(window.nfc || (window.cordova && window.cordova.nfc)) {
+        $ionicLoading.show({
+          template: '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner>' +
+            '<p>Looking for NFC-invoices</p>' +
+            '<button class="button button-outline button-light" ng-click="invoices.cancelLookup()">Cancel</button>',
+          scope: $scope
+        });
+
         nfc.addMimeTypeListener(
           'text/plain',
           function (nfcEvent) {
               var tag = nfcEvent.tag,
                   ndefMessage = tag.ndefMessage;
+
+              $ionicLoading.hide();
 
               // assuming the first record in the message has 
               // a payload that can be converted to a string.
@@ -103,7 +117,7 @@
               $scope.$apply();
           }, 
           function () { // success callback
-              alert("Waiting for NDEF tag");
+              //alert("Waiting for NDEF tag");
           },
           function (error) { // error callback
               alert("Error adding NDEF listener " + JSON.stringify(error));
