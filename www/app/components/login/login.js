@@ -9,7 +9,7 @@
     .controller('LoginCtrl', LoginCtrl);
 
   loginConfig.$inject = ['$stateProvider'];
-  function loginConfig ($stateProvider) {
+  function loginConfig($stateProvider) {
     $stateProvider.state('login', {
       url: '/login',
       templateUrl: 'app/components/login/login.html',
@@ -18,7 +18,7 @@
   }
 
   LoginCtrl.$inject = ['$state', 'session'];
-  function LoginCtrl ($state, session) {
+  function LoginCtrl($state, session) {
     this.$state = $state;
     this.session = session;
     this.pin = '';

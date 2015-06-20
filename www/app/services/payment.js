@@ -6,19 +6,19 @@
     .factory('payment', payment);
 
   payment.$inject = ['$http', 'BACKEND_ADDRESS'];
-  function payment($http, BACKEND_ADDRESS){
+  function payment($http, BACKEND_ADDRESS) {
     var paymentData = null;
 
     return {
-      formPayment : formPayment,
-      getPayment : getPayment
+      formPayment: formPayment,
+      getPayment: getPayment
     };
 
-    function getPayment(){
+    function getPayment() {
       return paymentData;
     }
 
-    function formPayment(accFrom, accTo, amount){
+    function formPayment(accFrom, accTo, amount) {
 
       var req = {
         method: 'POST',

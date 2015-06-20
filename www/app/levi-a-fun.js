@@ -16,12 +16,12 @@
     .run(leviAFunRun);
 
   leviAFunConfig.$inject = ['$urlRouterProvider'];
-  function leviAFunConfig ($urlRouterProvider) {
+  function leviAFunConfig($urlRouterProvider) {
     $urlRouterProvider.otherwise('/login');
   }
 
   leviAFunRun.$inject = ['$ionicPlatform', '$rootScope', '$state'];
-  function leviAFunRun ($ionicPlatform, $rootScope, $state) {
+  function leviAFunRun($ionicPlatform, $rootScope, $state) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -34,7 +34,7 @@
       }
     });
 
-    $rootScope.$on('$stateChangeError', function(){
+    $rootScope.$on('$stateChangeError', function() {
       $state.go('login');
     });
   }

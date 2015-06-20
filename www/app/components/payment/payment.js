@@ -7,11 +7,11 @@
     .controller('PaymentCtrl', PaymentCtrl);
 
   paymentConfig.$inject = ['$stateProvider'];
-  function paymentConfig ($stateProvider) {
+  function paymentConfig($stateProvider) {
     $stateProvider.state('tabs.payment', {
       url: '/payment',
       views: {
-        'invoices-tab' : {
+        'invoices-tab': {
           templateUrl: 'app/components/payment/payment.html',
           controller: 'PaymentCtrl as payment',
           resolve: {
@@ -29,14 +29,14 @@
   }
 
   PaymentCtrl.$inject = ['$state', '$scope', '$ionicLoading', 'payment'];
-  function PaymentCtrl ($state, $scope, $ionicLoading, payment) {
+  function PaymentCtrl($state, $scope, $ionicLoading, payment) {
     var vm = this;
     vm.$state = $state;
     vm.paymentData = payment.getPayment();
 
-    vm.pay = function(){
+    vm.pay = function() {
       $ionicLoading.show({
-        template : '<p><i class="icon assertive ion-checkmark"></i></p><p>The payment was successful.</p>' +
+        template: '<p><i class="icon assertive ion-checkmark"></i></p><p>The payment was successful.</p>' +
         '<button class="button button-small button-outline button-light" ng-click="payment.done()">OK</button>',
         scope: $scope
       });

@@ -4,13 +4,13 @@
   angular
     .module('levi-a-fun.components.accounts', [
       'levi-a-fun.services.session',
-      'levi-a-fun.services.accounts',
+      'levi-a-fun.services.accounts'
     ])
     .config(accountsConfig)
     .controller('AccountsCtrl', AccountsCtrl);
 
   accountsConfig.$inject = ['$stateProvider'];
-  function accountsConfig ($stateProvider) {
+  function accountsConfig($stateProvider) {
     $stateProvider.state('tabs.accounts', {
       url: '/accounts',
       views: {
@@ -32,7 +32,7 @@
   }
 
   AccountsCtrl.$inject = ['$state', 'accountsList'];
-  function AccountsCtrl ($state, accountsList) {
+  function AccountsCtrl($state, accountsList) {
     this.$state = $state;
     this.accountsList = accountsList;
   }

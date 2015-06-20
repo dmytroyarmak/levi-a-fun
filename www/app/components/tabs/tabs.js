@@ -6,7 +6,7 @@
     .config(tabsConfig);
 
   tabsConfig.$inject = ['$stateProvider'];
-  function tabsConfig ($stateProvider) {
+  function tabsConfig($stateProvider) {
     $stateProvider.state('tabs', {
       abstract: true,
       url: '/tabs',

@@ -7,11 +7,11 @@
     .controller('AccountCtrl', AccountCtrl);
 
   accountConfig.$inject = ['$stateProvider'];
-  function accountConfig ($stateProvider) {
+  function accountConfig($stateProvider) {
     $stateProvider.state('tabs.account', {
       url: '/accounts/:id',
       views: {
-        'accounts-tab' : {
+        'accounts-tab': {
           templateUrl: 'app/components/account/account.html',
           controller: 'AccountCtrl as account',
           resolve: {
@@ -29,15 +29,15 @@
   }
 
   AccountCtrl.$inject = ['$ionicLoading', '$scope', 'accountDetails'];
-  function AccountCtrl ($ionicLoading, $scope, accountDetails) {
+  function AccountCtrl($ionicLoading, $scope, accountDetails) {
     var vm = this;
 
     vm.accountDetails = accountDetails;
     vm.createInvoice = createInvoice;
     vm.cancelInvoice = cancelInvoice;
 
-    function createInvoice(){
-      if(window.nfc || (window.cordova && window.cordova.nfc)) {
+    function createInvoice() {
+      if (window.nfc) {
         $ionicLoading.show({
           template: '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner>' +
             '<p>Tap another device to transfer...</p>' +
@@ -51,7 +51,7 @@
             $ionicLoading.hide();
           },
           function onShareError(error) {
-            console.error("Error adding NDEF listener " + JSON.stringify(error));
+            console.error('Error adding NDEF listener ' + JSON.stringify(error));
           }
         );
       } else {
@@ -61,16 +61,16 @@
 
     function cancelInvoice() {
       $ionicLoading.hide();
-    };
+    }
 
-    function _generateInvoiceNdefMessage (argument) {
+    function _generateInvoiceNdefMessage(argument) {
       var invoiceData = JSON.stringify({
         account: vm.accountDetails,
         amount: vm.transferAmount
       });
 
       return [
-          ndef.textRecord(invoiceData)
+        ndef.textRecord(invoiceData)
       ];
     }
   }

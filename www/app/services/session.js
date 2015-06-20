@@ -6,22 +6,22 @@
     .factory('session', session);
 
   session.$inject = ['$q'];
-  function session($q){
+  function session($q) {
     var userPin = null;
 
     return {
-      login : login,
-      getUserPin : getUserPin,
+      login: login,
+      getUserPin: getUserPin,
       isLoggedIn: isLoggedIn,
-      logOut : logOut
+      logOut: logOut
     };
 
-    function login(pin){
+    function login(pin) {
       userPin = pin;
       return $q.when(userPin);
     }
 
-    function getUserPin(){
+    function getUserPin() {
       return userPin;
     }
 
@@ -29,7 +29,7 @@
       return !!userPin;
     }
 
-    function logOut(){
+    function logOut() {
       userPin = null;
     }
   }
